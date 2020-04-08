@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "TwoWayRelation": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "AuditLogger_InitialCatalog": "AuditLogger",
+        "AuditLogger_DataSource": "(localdb)\\MSSQLLocalDB"
+      }
+    }
+  }
+}
