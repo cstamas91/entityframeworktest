@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TwoWayRelation.Data;
 
 namespace AuditLogger.Migrations
 {
     [DbContext(typeof(Db))]
-    partial class DbModelSnapshot : ModelSnapshot
+    [Migration("20200408200423_AuditLogRecord_AttributeFromTo")]
+    partial class AuditLogRecord_AttributeFromTo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -31,9 +33,6 @@ namespace AuditLogger.Migrations
 
                     b.Property<string>("From")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("RecordedAt")
-                        .HasColumnType("datetime2");
 
                     b.Property<int?>("RegistrationId")
                         .HasColumnType("int");
@@ -88,7 +87,7 @@ namespace AuditLogger.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("PreferencesId")
+                    b.Property<int?>("PreferencesId")
                         .HasColumnType("int");
 
                     b.Property<int>("Region")
@@ -160,11 +159,9 @@ namespace AuditLogger.Migrations
 
             modelBuilder.Entity("TwoWayRelation.Data.Models.RegionPreference", b =>
                 {
-                    b.HasOne("TwoWayRelation.Data.Models.Preferences", "Preferences")
+                    b.HasOne("TwoWayRelation.Data.Models.Preferences", null)
                         .WithMany("RegionPreferences")
-                        .HasForeignKey("PreferencesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PreferencesId");
                 });
 
             modelBuilder.Entity("TwoWayRelation.Data.Models.Registration", b =>

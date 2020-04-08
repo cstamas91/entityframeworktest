@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "TwoWayRelation": {
+    "AuditLogger": {
       "commandName": "Project",
       "environmentVariables": {
         "AuditLogger_InitialCatalog": "AuditLogger",
